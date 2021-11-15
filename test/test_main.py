@@ -9,8 +9,8 @@ import utils.file_io
 class TestFunc(unittest.TestCase):
     def test_pickle_io(self):
         table = np.array([[4, 2], [12, -1]])
-        utils.file_io.write_pickle(table, "test")
-        table = utils.file_io.read_pickle("test")
+        utils.file_io.write_pickle(table, "test.pkl")
+        table = utils.file_io.read_pickle("test.pkl")
         self.assertEqual(4, table[0][0])
 
 

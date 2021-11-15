@@ -2,7 +2,6 @@ import inspect
 import os
 from logging import Logger, getLogger, DEBUG, Formatter, StreamHandler, FileHandler
 from datetime import datetime
-import file_io
 
 
 class SelfLogger:
@@ -16,7 +15,8 @@ class SelfLogger:
     def _get_file_handler(cls, name: str):
         # フォルダの存在を確認して作成
         log_dir = f"{os.path.dirname(__file__)}/../logs/"
-        file_io.make_dir(log_dir)
+        if not os.path.exists(log_dir):
+            os.mkdir(log_dir)
 
         log_file_name = datetime.now().strftime("%Y%m%d_%H%M%S") + "_" + name
         file_handler = FileHandler(f"{log_dir}/{log_file_name}.log")
